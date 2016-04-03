@@ -10,13 +10,13 @@
   function cgSociety($resource, $q, $log) {
     var data = $resource('http://www.cgsociety.org/ajax/gallery_json.php?page=:page&per=:size', {});
     var service = {
-      getFeeds: getFeeds
+      fetch: fetch
     };
     return service;
 
     ///////////
 
-    function getFeeds(page, size) {
+    function fetch(page, size) {
       var deferred = $q.defer();
 
       data.get({

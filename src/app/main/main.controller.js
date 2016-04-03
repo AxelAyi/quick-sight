@@ -2,49 +2,25 @@
   'use strict';
 
   angular
-    .module('quickSight')
-    .controller('MainController', MainController);
+  .module('quickSight')
+  .controller('MainController', MainController);
 
-  MainController.$inject = ['$timeout', 'webDevTec', 'toastr', 'cgSociety', '$log'];
+  MainController.$inject = ['$timeout', 'webDevTec', 'toastr', '$log', 'feedConnectors'];
 
-  function MainController($timeout, webDevTec, toastr, cgSociety, $log) {
-    cgSociety.getFeeds().then(function(cgFeeds) {
-      $log(cgFeeds);
-    });
+  function MainController($timeout, webDevTec, toastr, $log, feedConnectors) {
+
     var vm = this;
+    vm.thumbnails = [];
 
-    vm.cards = [];
-    for (var i = 0; i < 10; i++) {
-      vm.cards.push({
-        "id": i
-      });
-    }
+    // feedConnectors.cgSociety.fetch().then(function(feeds) {
+    //   $log.log(feeds);
+    // });
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1459463908589;
-    vm.showToastr = showToastr;
+    feedConnectors.mockFeed.fetch(0, 10).then(onMockFetched);
 
-    activate();
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
-    }
-
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
+    function onMockFetched(feeds) {
+        vm.thumbnails = feeds;
+        $log.log(feeds);
     }
   }
 })();

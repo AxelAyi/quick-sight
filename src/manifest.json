@@ -1,0 +1,12 @@
+{
+  "name": "Quick Sight",
+  "description": "Quick summary of new feeds of interest",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "icons": {
+    "128": "assets/images/icon_128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}

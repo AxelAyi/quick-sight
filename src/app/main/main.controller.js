@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-  .module('quickSight')
-  .controller('MainController', MainController);
+    .module('quickSight')
+    .controller('MainController', MainController);
 
   MainController.$inject = ['$timeout', 'webDevTec', 'toastr', '$log', 'feedConnectors'];
 
@@ -11,16 +11,24 @@
 
     var vm = this;
     vm.thumbnails = [];
+    vm.loadMore = loadMore;
 
-    // feedConnectors.cgSociety.fetch().then(function(feeds) {
-    //   $log.log(feeds);
-    // });
+    var offset = 0,
+      pageSize = 20;
 
-    feedConnectors.mockFeed.fetch(0, 10).then(onMockFetched);
+    loadMore();
 
-    function onMockFetched(feeds) {
-        vm.thumbnails = feeds;
-        $log.log(feeds);
+    ///////////
+
+    function onFeedsFetched(feeds) {
+      vm.thumbnails = vm.thumbnails.concat(feeds);
+      offset += pageSize;
+    }
+
+    function loadMore() {
+      if (offset < feedConnectors.mockFeed.count) {
+        feedConnectors.mockFeed.fetch(offset, pageSize).then(onFeedsFetched);
+      }
     }
   }
 })();

@@ -9,6 +9,7 @@
 
   function mockFeed($log, $q) {
     var service = {
+      count: 500,
       fetch: fetch
     };
 
@@ -16,14 +17,15 @@
 
     ///////////
 
-    function fetch(page, size) {
+    function fetch(offset, size) {
       var deferred = $q.defer();
-      // Mock values
-      var offset = page * size;
 
       var thumbnails = [];
+
+      var max = offset + size < service.count ? offset + size : service.count;
       for (var i = offset; i < offset + size; i++) {
-        thumbnails.push(getThumbnail(i));
+        var id = i % 135; // 135 images available as samples
+        thumbnails.push(getThumbnail(id));
       }
 
       deferred.resolve(thumbnails);
@@ -35,7 +37,7 @@
       return {
         url: 'assets/images/samples/img' + id + '.jpg',
         source: 'mock'
-    };
+      };
     }
   }
 })();

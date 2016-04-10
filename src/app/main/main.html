@@ -19,10 +19,10 @@
     <!-- To check stagger-{{$index*100}} -->
     <li class="animate fadeIn enter-fadeIn speed-3000" ng-repeat="thumb in main.thumbnails">
       <div class="content" ng-init="active=false" ng-mouseenter="active=true" ng-mouseleave="active=false">
-        <div class="image" style="background-image:url({{thumb.url}});" ng-class="{active:active}"></div>
+        <div class="image" style="background-image:url({{thumb.image}});" ng-class="{active:active}"></div>
         <div class="description" ng-class="{active:active}">
           <div class="label">
-            <!-- Placeholder n°{{$index}} -->
+              {{thumb.title}}
           </div>
         </div>
       </div>

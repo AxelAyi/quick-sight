@@ -23,7 +23,7 @@
       var thumbnails = [];
 
       var max = offset + size < service.count ? offset + size : service.count;
-      for (var i = offset; i < offset + size; i++) {
+      for (var i = offset; i < max; i++) {
         var id = i % 135; // 135 images available as samples
         thumbnails.push(getThumbnail(id));
       }
@@ -35,7 +35,7 @@
 
     function getThumbnail(id) {
       return {
-        url: 'assets/images/samples/img' + id + '.jpg',
+        image: 'assets/images/samples/img' + id + '.jpg',
         source: 'mock'
       };
     }

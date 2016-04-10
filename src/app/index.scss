@@ -73,10 +73,10 @@ html {
         background-size: cover;
         background-position: 50%;
         transition: all 3.0s;
-        filter:grayscale(80%);
+        filter:grayscale(40%);
         &.active {
           filter:grayscale(0%);
-          transform: scale(1.2,1.2);
+          transform: scale(1.1,1.1);
         }
       }
       .description {

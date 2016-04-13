@@ -12,11 +12,11 @@
     var vm = this;
     vm.thumbnails = [];
     vm.loadMore = loadMore;
+    vm.currentFeed = 'sketchFab';
 
     var offset = 0,
       pageSize = 20,
-      loading = false,
-      defaultFeed = 'mockFeed';
+      loading = false;
 
     loadMore();
 
@@ -29,8 +29,8 @@
     }
 
     function loadMore() {
-      if (!loading && offset < feedConnectors[defaultFeed].count) {
-        feedConnectors[defaultFeed].fetch(offset, pageSize).then(onFeedsFetched);
+      if (!loading && offset < feedConnectors.get(vm.currentFeed).count) {
+        feedConnectors.get(vm.currentFeed).fetch(offset, pageSize).then(onFeedsFetched);
         loading = true;
       }
     }

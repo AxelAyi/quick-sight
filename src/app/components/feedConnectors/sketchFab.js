@@ -32,6 +32,7 @@
             title: item.name,
             image: item.thumbnails.images[3].url,
             likes: item.likeCount,
+            views: item.viewCount,
             url: item.viewerUrl
           };
         });

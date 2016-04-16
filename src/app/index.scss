@@ -5,17 +5,8 @@
 // bower:scss
 // endbower
 // Card number per resolution
-$res-count: "1190px" "4", "945px" "3", "660px" "2", "400px" "1";
+$res-count: "default" "6", "1500px" "5", "1190px" "4", "945px" "3", "660px" "2", "400px" "1";
 $image-padding: 4px;
-// @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
-// @font-face {
-//   font-family: 'Material Icons';
-//   font-style: normal;
-//   font-weight: 400;
-//   src: url("../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.eot");
-//   /* For IE6-8 */
-//   src: local('Material Icons'), local('MaterialIcons-Regular'), url("../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff2") format('woff2'), url("../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff") format('woff'), url("../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf") format('truetype');
-// }
 @import url(http://fonts.googleapis.com/css?family=Lato);
 body {
   font-family: 'Lato', serif;
@@ -37,9 +28,13 @@ body {
     position: relative;
     float: left;
     overflow: hidden;
-    width: 20%;
     @each $count in $res-count {
-       @media screen and (max-width: #{nth($count, 1)}){
+      @if nth($count,1) != 'default' {
+        @media screen and (max-width: #{nth($count, 1)}) {
+          width: calc(100% / #{nth($count, 2)});
+        }
+      }
+      @else {
         width: calc(100% / #{nth($count, 2)});
       }
     }
@@ -73,19 +68,24 @@ body {
       }
       .description {
         position: absolute;
-        bottom: -100px;
-        height: 100px;
+        bottom: -60px;
+        height: 40px;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.8);
         transition: all 0.3s;
+        font-size: 12px;
+        padding: 10px;
         &.active {
           bottom: 0;
         }
         .label {
           color: white;
           // background-color: rgba(250, 250, 250, 0.5);
-          height: 30px;
-          padding: 10px;
+          height: 20px;
+        }
+        .count {
+          margin-right: 8px;
+          color: grey;
         }
       }
     }

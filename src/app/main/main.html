@@ -14,18 +14,24 @@
 </div> -->
 
 <div>
-  <div class="header">{{main.currentFeed}}</div> 
+  <div class="header">{{main.currentFeed}}</div>
   <ul class="grid" infinite-scroll="main.loadMore()">
     <!-- To check stagger-{{$index*100}} -->
     <li class="animate fadeIn enter-fadeIn speed-3000" ng-repeat="thumb in main.thumbnails">
 
-      <a href="{{thumb.url}}">
+      <a href="{{thumb.url}}" target="_blank">
         <div class="content" ng-init="active=false" ng-mouseenter="active=true" ng-mouseleave="active=false">
           <div class="image" style="background-image:url({{thumb.image}});" ng-class="{active:active}"></div>
           <div class="description" ng-class="{active:active}">
             <div class="label">
               {{thumb.title}}
             </div>
+            <span class="count">
+              <i class="fa fa-heart"></i>&nbsp;{{thumb.likes}}
+            </span>
+            <span class="count">
+              <i class="fa fa-eye"></i>&nbsp;{{thumb.views}}
+            </span>
           </div>
         </div>
       </a>

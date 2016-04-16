@@ -15,7 +15,7 @@
     vm.currentFeed = 'sketchFab';
 
     var offset = 0,
-      pageSize = 20,
+      pageSize = 24,
       loading = false;
 
     loadMore();

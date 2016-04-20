@@ -12,7 +12,7 @@
     var vm = this;
     vm.thumbnails = [];
     vm.loadMore = loadMore;
-    vm.currentFeed = 'sketchFab';
+    vm.currentFeed = 'cgSociety';
 
     var offset = 0,
       pageSize = 24,
@@ -29,8 +29,9 @@
     }
 
     function loadMore() {
-      if (!loading && offset < feedConnectors.get(vm.currentFeed).count) {
-        feedConnectors.get(vm.currentFeed).fetch(offset, pageSize).then(onFeedsFetched);
+        var currentFeedConnector = feedConnectors.get(vm.currentFeed);
+      if (currentFeedConnector && !loading && offset < currentFeedConnector.count) {
+        currentFeedConnector.fetch(offset, pageSize).then(onFeedsFetched);
         loading = true;
       }
     }

@@ -26,11 +26,14 @@
             <div class="label">
               {{thumb.title}}
             </div>
-            <span class="count">
+            <span class="count" ng-if="thumb.likes != null">
               <i class="fa fa-heart"></i>&nbsp;{{thumb.likes}}
             </span>
-            <span class="count">
+            <span class="count" ng-if="thumb.views != null">
               <i class="fa fa-eye"></i>&nbsp;{{thumb.views}}
+            </span>
+            <span class="count" ng-if="thumb.desc != null">
+              {{thumb.desc}}
             </span>
           </div>
         </div>

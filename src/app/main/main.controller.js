@@ -12,7 +12,8 @@
     var vm = this;
     vm.thumbnails = [];
     vm.loadMore = loadMore;
-    vm.currentFeed = 'Art Station';
+    vm.currentFeed = 'Kickstarter';
+    vm.currentFeedConnector = feedConnectors.get(vm.currentFeed);
 
     var offset = 0,
       pageSize = 24,
@@ -22,6 +23,7 @@
 
     ///////////
 
+
     function onFeedsFetched(feeds) {
       vm.thumbnails = vm.thumbnails.concat(feeds);
       offset += feeds.length;
@@ -29,10 +31,11 @@
     }
 
     function loadMore() {
-        var currentFeedConnector = feedConnectors.get(vm.currentFeed);
-      if (currentFeedConnector && !loading && offset < currentFeedConnector.count) {
-        currentFeedConnector.fetch(offset, pageSize).then(onFeedsFetched);
+      if (vm.currentFeedConnector && !loading && offset < vm.currentFeedConnector.count) {
+        vm.currentFeedConnector.fetch(offset, pageSize).then(onFeedsFetched);
         loading = true;
+      } else if (!vm.currentFeedConnector) {
+        console.error("Unknown Feed '" + vm.currentFeed + "'");
       }
     }
   }

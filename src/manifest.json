@@ -9,5 +9,5 @@
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
-  "permissions": ["http://www.cgsociety.org/", "https://www.artstation.com/"]
+  "permissions": ["http://www.cgsociety.org/", "https://www.artstation.com/", "https://www.kickstarter.com/"]
 }

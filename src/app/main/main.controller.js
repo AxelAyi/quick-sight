@@ -12,7 +12,7 @@
     var vm = this;
     vm.thumbnails = [];
     vm.loadMore = loadMore;
-    vm.currentFeed = 'cgSociety';
+    vm.currentFeed = 'Art Station';
 
     var offset = 0,
       pageSize = 24,
@@ -24,7 +24,7 @@
 
     function onFeedsFetched(feeds) {
       vm.thumbnails = vm.thumbnails.concat(feeds);
-      offset += pageSize;
+      offset += feeds.length;
       loading = false;
     }
 

@@ -10,11 +10,12 @@
   function cgSociety(feedConnectors, $resource, $q, $log) {
     var data = $resource('http://www.cgsociety.org/ajax/gallery_json.php?page=:page&per=:size', {});
     var service = {
+      name: "cgSociety",
       fetch: fetch,
       count: 300
     };
 
-    feedConnectors.register("cgSociety", service);
+    feedConnectors.register(service);
 
     return service;
 

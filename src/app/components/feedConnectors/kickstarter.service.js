@@ -19,12 +19,13 @@
     };
     var data = $resource(url, {}, options);
     var service = {
+      name: "Kickstarter",
       fetch: fetch,
       count: 300,
       showDescription: true
     };
 
-    feedConnectors.register("Kickstarter", service);
+    feedConnectors.register(service);
 
     return service;
 

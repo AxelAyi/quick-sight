@@ -10,11 +10,12 @@
   function sketchFab(feedConnectors, $resource, $q, $log) {
     var data = $resource('https://sketchfab.com/i/models?count=:size&date=7&offset=:offset&sort_by=-likeCount', {});
     var service = {
+      name: "sketchFab",
       fetch: fetch,
       count: 300
     };
 
-    feedConnectors.register("sketchFab", service);
+    feedConnectors.register(service);
 
     return service;
 

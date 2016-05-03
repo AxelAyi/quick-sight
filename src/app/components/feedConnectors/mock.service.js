@@ -9,11 +9,12 @@
 
   function mockFeed(feedConnectors, $log, $q) {
     var service = {
+      name: "mock",
       count: 500,
       fetch: fetch
     };
 
-    feedConnectors.register("mock", service);
+    feedConnectors.register(service);
 
     return service;
 
@@ -39,7 +40,7 @@
       return {
         image: 'assets/images/samples/img' + id + '.jpg',
         source: 'mock',
-        title: 'Image ' + id 
+        title: 'Image ' + id
       };
     }
   }

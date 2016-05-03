@@ -12,11 +12,12 @@
     var data = $resource(url, {});
     var staticSize = 0;
     var service = {
+      name: "Art Station",
       fetch: fetch,
       count: 300
     };
 
-    feedConnectors.register("Art Station", service);
+    feedConnectors.register(service);
 
     return service;
 

@@ -14,7 +14,9 @@
 </div> -->
 
 <div>
-  <div class="header">{{main.currentFeed}}</div>
+  <div class="header">
+    <select ng-model="main.currentFeedConnector" ng-options="feed as feed.name for feed in main.feeds | orderBy:'name'" ng-change="main.init()"></select>
+  </div>
   <ul class="grid" infinite-scroll="main.loadMore()">
     <!-- To check stagger-{{$index*100}} -->
     <li class="animate fadeIn enter-fadeIn speed-3000" ng-repeat="thumb in main.thumbnails">

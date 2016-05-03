@@ -13,11 +13,18 @@ body {
   background-color: #333333;
 }
 .header {
-  color: white;
   background-color: #222222;
   padding: 10px;
   margin-left: 5px;
   margin-right: 5px;
+  select {
+    color: white;
+    background-color: transparent;
+    border: none;
+    option {
+        color: black;
+    }
+  }
 }
 .grid {
   padding: 0;

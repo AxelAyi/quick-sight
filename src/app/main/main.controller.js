@@ -11,18 +11,27 @@
 
     var vm = this;
     vm.thumbnails = [];
+    vm.feeds = feedConnectors.getFeeds();
+    vm.currentFeedConnector = vm.feeds[0];
+
+    vm.init = init;
     vm.loadMore = loadMore;
-    vm.currentFeed = 'Kickstarter';
-    vm.currentFeedConnector = feedConnectors.get(vm.currentFeed);
 
     var offset = 0,
       pageSize = 24,
+
       loading = false;
 
-    loadMore();
+    init();
 
     ///////////
 
+    function init() {
+      offset = 0;
+      loading = false;
+      vm.thumbnails.length = 0;
+      loadMore();
+    }
 
     function onFeedsFetched(feeds) {
       vm.thumbnails = vm.thumbnails.concat(feeds);
@@ -35,7 +44,7 @@
         vm.currentFeedConnector.fetch(offset, pageSize).then(onFeedsFetched);
         loading = true;
       } else if (!vm.currentFeedConnector) {
-        console.error("Unknown Feed '" + vm.currentFeed + "'");
+        console.error("Unknown Feed '" + vm.currentFeedConnector.name + "'");
       }
     }
   }

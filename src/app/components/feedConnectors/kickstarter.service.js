@@ -44,7 +44,7 @@
           return {
             title: item.name,
             image: item.photo.full,
-            url: item.url,
+            url: item.urls.web.project,
             desc: item.pledged + item.currency_symbol + " / " + item.goal + item.currency_symbol
           };
         });

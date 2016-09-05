@@ -14,18 +14,32 @@
 </div> -->
 
 <div>
-  <!-- <div>HEADER</div>  -->
+  <div class="header">
+    <select ng-model="main.currentFeedConnector" ng-options="feed as feed.name for feed in main.feeds | orderBy:'name'" ng-change="main.init()"></select>
+  </div>
   <ul class="grid" infinite-scroll="main.loadMore()">
     <!-- To check stagger-{{$index*100}} -->
     <li class="animate fadeIn enter-fadeIn speed-3000" ng-repeat="thumb in main.thumbnails">
-      <div class="content" ng-init="active=false" ng-mouseenter="active=true" ng-mouseleave="active=false">
-        <div class="image" style="background-image:url({{thumb.image}});" ng-class="{active:active}"></div>
-        <div class="description" ng-class="{active:active}">
-          <div class="label">
+
+      <a href="{{thumb.url}}" target="_blank">
+        <div class="content" ng-init="active=false" ng-mouseenter="active=true" ng-mouseleave="active=false">
+          <div class="image" style="background-image:url({{thumb.image}});" ng-class="{active:active}"></div>
+          <div class="description" ng-class="{active:active || main.currentFeedConnector.showDescription}">
+            <div class="label">
               {{thumb.title}}
+            </div>
+            <span class="count" ng-if="thumb.likes != null">
+              <i class="fa fa-heart"></i>&nbsp;{{thumb.likes}}
+            </span>
+            <span class="count" ng-if="thumb.views != null">
+              <i class="fa fa-eye"></i>&nbsp;{{thumb.views}}
+            </span>
+            <span class="count" ng-if="thumb.desc != null">
+              {{thumb.desc}}
+            </span>
           </div>
         </div>
-      </div>
+      </a>
     </li>
   </ul>
 </div>

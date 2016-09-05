@@ -11,27 +11,40 @@
 
     var vm = this;
     vm.thumbnails = [];
+    vm.feeds = feedConnectors.getFeeds();
+    vm.currentFeedConnector = vm.feeds[0];
+
+    vm.init = init;
     vm.loadMore = loadMore;
 
     var offset = 0,
-      pageSize = 20,
-      loading = false,
-      defaultFeed = 'mockFeed';
+      pageSize = 24,
 
-    loadMore();
+      loading = false;
+
+    init();
 
     ///////////
 
+    function init() {
+      offset = 0;
+      loading = false;
+      vm.thumbnails.length = 0;
+      loadMore();
+    }
+
     function onFeedsFetched(feeds) {
       vm.thumbnails = vm.thumbnails.concat(feeds);
-      offset += pageSize;
+      offset += feeds.length;
       loading = false;
     }
 
     function loadMore() {
-      if (!loading && offset < feedConnectors[defaultFeed].count) {
-        feedConnectors[defaultFeed].fetch(offset, pageSize).then(onFeedsFetched);
+      if (vm.currentFeedConnector && !loading && offset < vm.currentFeedConnector.count) {
+        vm.currentFeedConnector.fetch(offset, pageSize).then(onFeedsFetched);
         loading = true;
+      } else if (!vm.currentFeedConnector) {
+        console.error("Unknown Feed '" + vm.currentFeedConnector.name + "'");
       }
     }
   }

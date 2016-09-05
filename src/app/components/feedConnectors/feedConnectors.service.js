@@ -5,14 +5,35 @@
     .module('quickSight')
     .factory('feedConnectors', feedConnectors);
 
-  feedConnectors.$inject = ['cgSociety', 'mockFeed'];
+  feedConnectors.$inject = [];
 
-  function feedConnectors(cgSociety, mockFeed) {
+  function feedConnectors() {
+
+    var feeds = {};
+
     var service = {
-      cgSociety: cgSociety,
-      mockFeed: mockFeed
+      register: register,
+      get: get,
+      getFeeds: getFeeds
     };
 
     return service;
+
+    ////////
+
+    function register(feedService) {
+      feeds[feedService.name] = feedService;
+    }
+
+    function get(feedName) {
+      return feeds[feedName];
+    }
+
+    function getFeeds() {
+      var feedArr = Object.keys(feeds).map(function(key) {
+        return feeds[key];
+      });
+      return Object.freeze(feedArr);
+    }
   }
 })();

@@ -3,15 +3,18 @@
 
   angular
     .module('quickSight')
-    .factory('mockFeed', mockFeed);
+    .run(mockFeed);
 
-  mockFeed.$injector = ['$log', '$q'];
+  mockFeed.$injector = ['feedConnectors', '$log', '$q'];
 
-  function mockFeed($log, $q) {
+  function mockFeed(feedConnectors, $log, $q) {
     var service = {
+      name: "mock",
       count: 500,
       fetch: fetch
     };
+
+    feedConnectors.register(service);
 
     return service;
 
@@ -36,7 +39,8 @@
     function getThumbnail(id) {
       return {
         image: 'assets/images/samples/img' + id + '.jpg',
-        source: 'mock'
+        source: 'mock',
+        title: 'Image ' + id
       };
     }
   }

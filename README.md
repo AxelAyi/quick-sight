@@ -25,3 +25,14 @@ gulp serve
 # To build the executable extension
 gulp
 ```
+
+## <a name="status"></a> Status
+
+# Available feeds
+- ArtStation
+- CGSociety
+- Kickstarter
+- SketchFab
+
+# Screenshot
+![alt tag](https://raw.githubusercontent.com/akakwel/quick-sight/master/snapshots/overview01.jpg)

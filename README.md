@@ -35,4 +35,4 @@ gulp
 - SketchFab
 
 # Screenshot
-![alt tag](https://raw.githubusercontent.com/akakwel/quick-sight/master/snapshots/overview01.jpg)
+![alt tag](https://raw.githubusercontent.com/akakwel/quick-sight/master/showcase/overview01.gif)
